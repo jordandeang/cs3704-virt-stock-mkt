@@ -1,6 +1,8 @@
 package com.controller;
 
+import com.client.UserClient;
 import com.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +13,9 @@ public class RestApiController {
 
     private final double startingBalance = 10000;
 
+    @Autowired
+    private UserClient userClient;
+
     @RequestMapping(method = RequestMethod.POST, value = "/createAccount")
     public User createAccount(
             @RequestParam String name,
@@ -18,6 +23,7 @@ public class RestApiController {
             @RequestParam String password,
             @RequestParam String email) {
         User user = new User(name, address, password, email, startingBalance);
+        userClient.createAccount(user);
         return user;
     }
 }

@@ -1,0 +1,14 @@
+mongoData/WiredTiger
+mongoData/WiredTiger.lock
+mongoData/WiredTiger.turtle
+mongoData/WiredTiger.wt
+mongoData/WiredTigerLAS.wt
+mongoData/_mdb_catalog.wt
+mongoData/collection-0-3385777418573804895.wt
+mongoData/collection-4-4285264743034571595.wt
+mongoData/index-1-3385777418573804895.wt
+mongoData/index-5-4285264743034571595.wt
+mongoData/mongod.lock
+mongoData/sizeStorer.wt
+mongoData/storage.bson
+mongoData/
