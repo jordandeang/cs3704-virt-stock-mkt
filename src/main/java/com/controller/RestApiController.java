@@ -2,18 +2,22 @@ package com.controller;
 
 import com.model.User;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RestApiController {
 
-    private static final String template = "Hello, %s!";
+    private final double startingBalance = 10000;
 
-    @RequestMapping("/greeting")
-    public User greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        System.out.println("hello!");
-        return new User(1,
-                String.format(template, name));
+    @RequestMapping(method = RequestMethod.POST, value = "/createAccount")
+    public User createAccount(
+            @RequestParam String name,
+            @RequestParam String address,
+            @RequestParam String password,
+            @RequestParam String email) {
+        User user = new User(name, address, password, email, startingBalance);
+        return user;
     }
 }
