@@ -42,7 +42,7 @@ public class RestApiController {
             @RequestParam String userName) {
         Stock stock = new Stock(stockName, stockPrice, numberOfShares);
         User user = userClient.getUser(userName);
-        if (stockClient.updateStock(user, stock) == null) {
+        if (stockClient.purchaseStock(user, stock) == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Inadequate Funds");
         }
         else {

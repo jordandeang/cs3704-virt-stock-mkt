@@ -6,7 +6,7 @@ package com.model;
 public class Stock {
     private final String stockName;
     private double stockPrice;
-    private final int numberOfShares;
+    private int numberOfShares;
 
     public Stock(String stockName, double stockPrice, int numberOfShares) {
         this.stockName = stockName;
@@ -28,6 +28,10 @@ public class Stock {
 
     public int getNumberOfShares() {
         return numberOfShares;
+    }
+
+    public void setNumberOfShares(int numberOfShares) {
+        this.numberOfShares = numberOfShares;
     }
 
     @Override
