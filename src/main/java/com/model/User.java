@@ -10,11 +10,14 @@ import java.util.ArrayList;
  */
 @Document(collection="users")
 public class User {
+
     @Id
     private String id;
+
     private final String name, address, password, email;
     //TODO - Add list of stocks and quantity of each
-    private final double balance;
+    private ArrayList<Stock> stockList;
+    private double balance;
 
 
     public User(String name, String address, String password, String email, double balance) {
@@ -23,6 +26,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.balance = balance;
+        stockList = new ArrayList<Stock>();
     }
 
     public String getName() {
@@ -43,6 +47,18 @@ public class User {
 
     public double getBalance() {
         return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void addStock(Stock stock) {
+        stockList.add(stock);
+    }
+
+    public ArrayList<Stock> getStocklist() {
+        return stockList;
     }
 
     @Override

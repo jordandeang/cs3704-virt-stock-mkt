@@ -17,4 +17,8 @@ public class UserClient {
     public void createAccount(User user) {
         mongoController.createAccount(user);
     }
+
+    public User getUser(String user) {
+        return mongoController.getUser(user);
+    }
 }
