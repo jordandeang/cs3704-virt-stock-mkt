@@ -12,3 +12,5 @@ mongoData/mongod.lock
 mongoData/sizeStorer.wt
 mongoData/storage.bson
 mongoData/
+.idea/
+.gradle/
