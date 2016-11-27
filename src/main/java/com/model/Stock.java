@@ -1,21 +1,17 @@
 package com.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 /**
- * Created by Jordan on 11/15/2016.
+ * Created by Kevin on 11/15/2016.
  */
 public class Stock {
-
     private final String stockName;
-    private final double stockPrice;
-    private final int quantity;
+    private double stockPrice;
+    private int numberOfShares;
 
-    public Stock(String stockName, double stockPrice, int quantity) {
+    public Stock(String stockName, double stockPrice, int numberOfShares) {
         this.stockName = stockName;
         this.stockPrice = stockPrice;
-        this.quantity = quantity;
+        this.numberOfShares = numberOfShares;
     }
 
     public String getStockName() {
@@ -26,14 +22,24 @@ public class Stock {
         return stockPrice;
     }
 
-    public int getQuantity() { return quantity; }
+    public void setStockPrice(double stockPrice) {
+        this.stockPrice = stockPrice;
+    }
+
+    public int getNumberOfShares() {
+        return numberOfShares;
+    }
+
+    public void setNumberOfShares(int numberOfShares) {
+        this.numberOfShares = numberOfShares;
+    }
 
     @Override
     public String toString() {
         return "Stock{" +
                 "stockName='" + stockName + '\'' +
-                ", stockPrice='" + stockPrice + '\'' +
-                ", quantity=" + quantity+
+                ", stockPrice=" + stockPrice +
+                ", numberOfShares=" + numberOfShares +
                 '}';
     }
 }

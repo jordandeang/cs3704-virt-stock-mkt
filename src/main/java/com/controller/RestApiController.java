@@ -5,6 +5,8 @@ import com.client.UserClient;
 import com.model.Stock;
 import com.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,5 +44,21 @@ public class RestApiController {
      */
     public Stock[] refreshStocks(@RequestParam int from, @RequestParam int to) throws IOException {
         return stockClient.refreshStocks(from, to);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/purchaseStock")
+    public ResponseEntity<String> purchaseStock(
+            @RequestParam String stockName,
+            @RequestParam int numberOfShares,
+            @RequestParam double stockPrice,
+            @RequestParam String userName) {
+        Stock stock = new Stock(stockName, stockPrice, numberOfShares);
+        User user = userClient.getUser(userName);
+        if (stockClient.purchaseStock(user, stock) == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Inadequate Funds");
+        }
+        else {
+            return ResponseEntity.ok(stock.toString());
+        }
     }
 }

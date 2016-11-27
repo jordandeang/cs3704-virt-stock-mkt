@@ -17,4 +17,13 @@ public class MongoController {
     public void createAccount(User user) {
         userRepository.save(user);
     }
+
+    public User getUser(String user) {
+        return userRepository.findByName(user);
+    }
+
+    public User updateUser(User user) {
+        userRepository.save(user);
+        return user;
+    }
 }
