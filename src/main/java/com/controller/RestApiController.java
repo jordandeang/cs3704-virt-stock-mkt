@@ -61,4 +61,20 @@ public class RestApiController {
             return ResponseEntity.ok(stock.toString());
         }
     }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/sellStock")
+    public ResponseEntity<String> sellStock(
+            @RequestParam String stockName,
+            @RequestParam int numberOfShares,
+            @RequestParam double stockPrice,
+            @RequestParam String userName) {
+        Stock stock = new Stock(stockName, stockPrice, numberOfShares);
+        User user = userClient.getUser(userName);
+        if (stockClient.sellStock(user, stock) == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Stock not Purchased or can not sell that many shares");
+        }
+        else {
+            return ResponseEntity.ok(stock.toString());
+        }
+    }
 }

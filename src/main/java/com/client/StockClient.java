@@ -46,8 +46,9 @@ public class StockClient {
             int index = findStock(stock.getStockName(), user.getStocklist());
             if (index != -1) {
                 Stock updateStock = user.getStocklist().get(index);
-                updateStock.setNumberOfShares(stock.getNumberOfShares() + user.getStocklist().get(index).getNumberOfShares());
-                user.getStocklist().remove(index);
+                updateStock.setNumberOfShares(stock.getNumberOfShares() + updateStock.getNumberOfShares());
+                updateStock.setStockPrice(stock.getStockPrice());
+                user.removeStock(index);
                 user.addStock(updateStock);
             }
             else {
@@ -60,6 +61,36 @@ public class StockClient {
             return null;
         }
     }
+
+    public User sellStock(User user, Stock stock) {
+        int index = findStock(stock.getStockName(), user.getStocklist());
+        if (index != -1) {
+            Stock updateStock = user.getStocklist().get(index);
+            double updateShares = updateStock.getNumberOfShares() - stock.getNumberOfShares();
+            if (updateShares < 0.0) {
+                return null;
+            }
+            else {
+                double newBalance = user.getBalance() + stock.getNumberOfShares()*stock.getStockPrice();
+                user.setBalance(newBalance);
+                if (updateShares == 0.0) {
+                    user.removeStock(index);
+                }
+                else {
+                    updateStock.setNumberOfShares(updateStock.getNumberOfShares() - stock.getNumberOfShares());
+                    updateStock.setStockPrice(stock.getStockPrice());
+                    user.removeStock(index);
+                    user.addStock(updateStock);
+                }
+                mongoController.updateUser(user);
+                return user;
+            }
+        }
+        else {
+            return null;
+        }
+    }
+
 
     private int findStock(String stockName, ArrayList<Stock> stockList) {
         for (Stock stock : stockList) {
