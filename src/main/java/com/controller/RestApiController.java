@@ -37,7 +37,10 @@ public class RestApiController {
     }
 
     @RequestMapping("/refreshStocks")
-    public Stock[] refreshStocks() throws IOException {
-        return stockClient.refreshStocks();
+    /*
+    Precondition: to-from <= 200
+     */
+    public Stock[] refreshStocks(@RequestParam int from, @RequestParam int to) throws IOException {
+        return stockClient.refreshStocks(from, to);
     }
 }
