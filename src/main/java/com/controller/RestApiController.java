@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.client.StockClient;
 import com.client.UserClient;
 import com.model.Stock;
 import com.model.User;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import yahoofinance.YahooFinance;
 
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 public class RestApiController {
@@ -19,6 +21,9 @@ public class RestApiController {
 
     @Autowired
     private UserClient userClient;
+
+    @Autowired
+    private StockClient stockClient;
 
     @RequestMapping(method = RequestMethod.POST, value = "/createAccount")
     public User createAccount(
@@ -31,9 +36,8 @@ public class RestApiController {
         return user;
     }
 
-    @RequestMapping("/getStock")
-    public Stock getStock(@RequestParam String stockName) throws IOException {
-        yahoofinance.Stock stock = YahooFinance.get(stockName);
-        return new Stock(stockName, stock.getQuote().getPrice().doubleValue(), 1);
+    @RequestMapping("/refreshStocks")
+    public Stock[] refreshStocks() throws IOException {
+        return stockClient.refreshStocks();
     }
 }
