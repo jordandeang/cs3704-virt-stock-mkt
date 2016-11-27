@@ -12,6 +12,7 @@
     <orderEntry type="module" module-name="virtualStockMarket_main" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-web:1.4.2.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-data-mongodb:1.4.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: com.yahoofinance-api:YahooFinanceAPI:3.5.0" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-test:1.4.2.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter:1.4.2.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-tomcat:1.4.2.RELEASE" level="project" />

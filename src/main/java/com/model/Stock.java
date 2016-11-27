@@ -7,15 +7,20 @@ public class Stock {
     private final String stockName;
     private double stockPrice;
     private int numberOfShares;
+    private final String stockSymbol;
 
-    public Stock(String stockName, double stockPrice, int numberOfShares) {
+    public Stock(String stockName, String stockSymbol, double stockPrice, int numberOfShares) {
         this.stockName = stockName;
+        this.stockSymbol = stockSymbol;
         this.stockPrice = stockPrice;
         this.numberOfShares = numberOfShares;
     }
-
     public String getStockName() {
         return stockName;
+    }
+
+    public String getStockSymbol() {
+        return stockSymbol;
     }
 
     public double getStockPrice() {
@@ -32,14 +37,5 @@ public class Stock {
 
     public void setNumberOfShares(int numberOfShares) {
         this.numberOfShares = numberOfShares;
-    }
-
-    @Override
-    public String toString() {
-        return "Stock{" +
-                "stockName='" + stockName + '\'' +
-                ", stockPrice=" + stockPrice +
-                ", numberOfShares=" + numberOfShares +
-                '}';
     }
 }
