@@ -61,6 +61,10 @@ public class User {
         return stockList;
     }
 
+    public void removeStock(int index) {
+        stockList.remove(index);
+    }
+
     @Override
     public String toString() {
         return "User{" +
