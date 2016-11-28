@@ -31,6 +31,7 @@
         </div>
         <div th:if="${#httpServletRequest.remoteUser} != null">
             <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+            <p th:inline="text">Balance: [[${#httpServletRequest.userPrincipal.principal.balance}]]</p>
             <form th:action="@{/logout}" method="post">
                 <input type="submit" value="Sign Out"/>
             </form>

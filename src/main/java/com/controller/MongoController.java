@@ -1,16 +1,12 @@
 package com.controller;
 
 import com.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.repository.userRepository;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by Kevin on 11/14/2016.
@@ -40,8 +36,7 @@ public class MongoController  implements UserDetailsService {
         if(user == null){
             throw new UsernameNotFoundException(username);
         }else{
-            List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("USER"));
-            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+            return user;
         }
     }
 }

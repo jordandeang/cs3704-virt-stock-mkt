@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <style>
 
-
+input[type=text], select {
+    width: 10%;
+}
 
 table {
     font-family: arial, sans-serif;
@@ -38,7 +40,7 @@ $.getJSON( "/refreshStocks", range )
   .done(function( json ) {
   var txt = "";
   $.each(json, function(index, value) {
-      txt += "<tr><td>"+value.stockName+"</td><td>"+value.stockSymbol+"</td><td>"+value.stockPrice+"</td></tr>";
+      txt += "<tr><td>"+value.stockName+"</td><td>"+value.stockSymbol+"</input></td><td>"+value.stockPrice+"</td><td><input type='text' id='"+value.stockSymbol+"'></input><button type='button' value ='Buy' onclick='buyStock(\"" + value.stockName + "\",\"" + value.stockSymbol + "\")'>Buy</button></td></tr>";
 
   })
      $("#datatable").append(txt);
@@ -48,6 +50,21 @@ $.getJSON( "/refreshStocks", range )
     console.log( "Request Failed: " + err );
   })
 });
+
+function buyStock(stockName, stockSymbol){
+    var numberOfShares = document.getElementById(stockSymbol).value;
+    var params ="{'stockName':\"" + stockName + "\", 'stockSymbol':\"" + stockSymbol + "\", 'numberOfShares':\"" +            numberOfShares + "\", 'userName':'test'}";
+    console.log(params);
+     $.ajax({
+        type: 'POST',
+        url: '/purchaseStock?stockName=' + stockName + '&stockSymbol=' + stockSymbol  + '&numberOfShares=' + numberOfShares + '&userName=test',
+        dataType: 'json',
+        success: function(json) {
+           window.location.href = "http://localhost:8080/";
+        }
+    })
+    return false;
+}
 
 function nextFifty(){
 var newFrom = parseInt(range['from'], 10) + 50;
@@ -70,13 +87,16 @@ function refresh(){
 <button type="button" onclick="refresh()">Refresh Stock Data</button>
 
 <div align="center">
+    <form id="buyForm">
     <table id="datatable">
         <tr>
             <th>Company Name</th>
             <th>Ticker Symbol</th>
             <th>Price ($USD)</th>
+            <th></th>
         </tr>
     </table>
+    </form>
 
 
     <button type="button" onclick="previousFifty()">Previous 50</button>
