@@ -2,75 +2,36 @@ package com.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
 
 /**
  * Created by Kevin on 11/14/2016.
  */
 @Document(collection="users")
-public class User implements UserDetails{
+public class User extends org.springframework.security.core.userdetails.User{
 
     @Id
     private String id;
 
-    private final String name, address, password, email;
+    private final String name, address, email;
     private ArrayList<Stock> stockList;
     private double balance;
 
 
     public User(String name, String address, String password, String email, double balance) {
+        super(name, password, Arrays.asList(new SimpleGrantedAuthority("USER")));
         this.name = name;
         this.address = address;
-        this.password = password;
         this.email = email;
         this.balance = balance;
         stockList = new ArrayList<Stock>();
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String getAddress() {
         return address;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return name;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 
     public String getEmail() {
