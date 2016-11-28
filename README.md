@@ -12,6 +12,7 @@ The Virtual Stock Market Game is an application that allows users to sign up for
 ## Documentation
 ---------------------
 
+The most up-to-date documentation can be found in our classes within /src/main/java/com/ 
 
 ## Installation
 ---------------------
