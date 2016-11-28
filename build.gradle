@@ -22,6 +22,7 @@ jar {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 sourceCompatibility = 1.8
@@ -30,6 +31,8 @@ targetCompatibility = 1.8
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
-    testCompile('org.springframework.boot:spring-boot-starter-test')
     compile group: 'com.yahoofinance-api', name: 'YahooFinanceAPI', version: '3.5.0'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile "org.mockito:mockito-core:2.+"
+
 }
