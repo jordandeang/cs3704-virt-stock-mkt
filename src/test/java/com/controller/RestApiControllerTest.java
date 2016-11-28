@@ -1,8 +1,6 @@
 package com.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.model.User;
-import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,11 +14,13 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.Assert.assertNotNull;
+
 /**
  * Created by Kevin on 11/27/2016.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class RestApiControllerTest {
 
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
