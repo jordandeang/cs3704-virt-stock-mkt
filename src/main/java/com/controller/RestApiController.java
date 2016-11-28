@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RestApiController {
 
+    //user's starting $ balance
     @Value("${starting.balance}")
     private double startingBalance;
 
+    //the user client object
     @Autowired
     private UserClient userClient;
 
+    //the stock client object
     @Autowired
     private StockClient stockClient;
 
