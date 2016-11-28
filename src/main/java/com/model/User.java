@@ -97,14 +97,4 @@ public class User implements UserDetails{
         stockList.remove(index);
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", balance=" + balance +
-                '}';
-    }
 }
