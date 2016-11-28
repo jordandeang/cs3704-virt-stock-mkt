@@ -1,4 +1,4 @@
-# cs3704-virt-stock-mkt
+cs3704-virt-stock-mkt
 
 # Virtual Stock Market Game
 
