@@ -29,3 +29,7 @@ In order to run the Virtual Stock Market Application, one must do the following:
 
 ## API References
 ---------------------
+
+Yahoo Finance API - REST based API. Returns desired stock ticker data in JSON format based on request URL sent to API.
+
+Spring Framework API - Core support for dependency injection, transaction management, web applications, data access, and testing.
