@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Main Page</title>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div class="jumbotron text-center">
+    <h1>Welcome to the Virtual Stock Market!</h1>
+    <div th:if="${#httpServletRequest.remoteUser} == null">
+        <p>Please login or sign up below</p>
+    </div>
+
+</div>
+
+<div class="container">
+    <div align="center">
+        <div th:if="${#httpServletRequest.remoteUser} == null">
+            <a th:href="@{/login}">
+                <button type="button" class="btn">Log In</button>
+            </a>
+            <a th:href="@{/signup}">
+                <button type="button" class="btn">Sign Up</button>
+            </a>
+        </div>
+        <div th:if="${#httpServletRequest.remoteUser} != null">
+            <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out"/>
+            </form>
+        </div>
+    </div>
+
+    <div align="center">
+
+    </div>
+</div>
+
+</body>
+</html>

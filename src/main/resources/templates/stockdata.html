@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-url-parser/2.3.1/purl.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+/* <![CDATA[ */
+var range;
+$(document).ready(function(){
+if (window.location.search.indexOf('from=') > -1) {
+    range = {from: $.url().param('from'), to: $.url().param('to')};
+} else {
+    range = {from:"0",to:"50"};
+}
+$.getJSON( "/refreshStocks", range )
+  .done(function( json ) {
+  var txt = "";
+  $.each(json, function(index, value) {
+      txt += "<tr><td>"+value.stockName+"</td><td>"+value.stockSymbol+"</td><td>"+value.stockPrice+"</td></tr>";
+
+  })
+     $("#datatable").append(txt);
+  })
+  .fail(function( jqxhr, textStatus, error ) {
+    var err = textStatus + ", " + error;
+    console.log( "Request Failed: " + err );
+  })
+});
+
+function nextFifty(){
+var newFrom = parseInt(range['from'], 10) + 50;
+var newTo = parseInt(range['to'], 10) + 50;
+window.location.href = window.location.href.split('?')[0] + "?from=" + newFrom + "&to=" + newTo;
+}
+
+function previousFifty(){
+
+var newFrom = parseInt(range['from'], 10) - 50;
+var newTo = parseInt(range['to'], 10) - 50;
+window.location.href = window.location.href.split('?')[0] + "?from=" + newFrom + "&to=" + newTo;
+}
+/* ]]> */
+</script>
+<button type="button" onclick="">Refresh Stock Data</button>
+
+<div align="center">
+    <table id="datatable">
+        <tr>
+            <th>Company Name</th>
+            <th>Ticker Symbol</th>
+            <th>Price ($USD)</th>
+        </tr>
+    </table>
+
+
+    <button type="button" onclick="previousFifty()">Previous 50</button>
+    <button type="button" onclick="nextFifty()">Next 50</button>
+</div>
+
+</body>
+</html>
