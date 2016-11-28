@@ -4,18 +4,17 @@ cs3704-virt-stock-mkt
 
 Authors: Jordan Deang (jdeang), Mihir Kamani (mihirk93), Kevin Koehncke (koehncke), Philip Whitcomb (philipwh)
 
-What Is It?
+## What Is It?
 ---------------------
 
-The Virtual Stock Market Game is an application that allows users to sign up for different virtual stock market leagues, simulate stock transactions with fake money, and compete against other users who have signed up in the league by each user's investment performances.
+The Virtual Stock Market Game is an application that allows users to sign up for different virtual stock market leagues, simulate stock transactions with fake money, and compete against other users who have signed up in the league by each user's investment performances. Users are able to keep track of live stock data 
 
-The Latest Version
+## Documentation
 ---------------------
 
 
-Documentation
+## Installation
 ---------------------
-
 
 In order to run the Virtual Stock Market Application, one must do the following:
 
@@ -27,3 +26,6 @@ In order to run the Virtual Stock Market Application, one must do the following:
   (This sets the MongoDB instance to run locally and all the data will be saved in the mongoData folder)
 
 - ./gradlew clean followed by ./gradlew bootRun
+
+## API References
+---------------------
