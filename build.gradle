@@ -38,6 +38,8 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile group: 'com.yahoofinance-api', name: 'YahooFinanceAPI', version: '3.5.0'
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile "org.mockito:mockito-core:2.+"
+    //To run jUnit unit tests in StockClientTest, uncomment mockito dependency, otherwise leave commented out for integration tests
+    //testCompile "org.mockito:mockito-core:2.+"
+    testCompile('org.apache.httpcomponents:httpclient:4.5.1')
 
 }

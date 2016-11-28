@@ -4,11 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.Stock;
 import com.model.User;
 import com.repository.userRepository;
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,7 +30,9 @@ public class RestApiControllerTest {
 
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    private RestTemplate restTemplate = new RestTemplate();
+    //Disables redirection from Spring Security, allows for endpoints to be hit
+    HttpClient httpClient = HttpClientBuilder.create().disableRedirectHandling().build();
+    private RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory(httpClient));
 
     @Autowired
     private userRepository userRepository;
