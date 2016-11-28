@@ -28,6 +28,9 @@ public class RestApiController {
     @Autowired
     private StockClient stockClient;
 
+    /**
+    * Creates a new user account with parameters passed from HTML input form
+    */
     @RequestMapping(method = RequestMethod.POST, value = "/createAccount")
     public ResponseEntity<?> createAccount(
             @RequestParam String name,
@@ -39,8 +42,9 @@ public class RestApiController {
         return ResponseEntity.ok(user);
     }
 
-    /*
-        Precondition: to-from <= 200
+    /**
+     * Returns the stock ticker data specific to the requesting user
+     * Precondition: to-from <= 200
      */
     @RequestMapping(method = RequestMethod.GET, value = "/refreshStocks")
     public ResponseEntity<?> refreshStocks(
@@ -53,7 +57,10 @@ public class RestApiController {
             return ResponseEntity.ok(stocks);
         }
     }
-
+    
+    /**
+     * Purchases stock for the user
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/purchaseStock")
     public ResponseEntity<?> purchaseStock(
             @RequestParam String stockName,
@@ -73,6 +80,9 @@ public class RestApiController {
         }
     }
 
+    /**
+     * User sells stock
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/sellStock")
     public ResponseEntity<?> sellStock(
             @RequestParam String stockName,
