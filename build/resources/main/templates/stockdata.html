@@ -61,9 +61,13 @@ var newFrom = parseInt(range['from'], 10) - 50;
 var newTo = parseInt(range['to'], 10) - 50;
 window.location.href = window.location.href.split('?')[0] + "?from=" + newFrom + "&to=" + newTo;
 }
+
+function refresh(){
+ location.reload();
+}
 /* ]]> */
 </script>
-<button type="button" onclick="">Refresh Stock Data</button>
+<button type="button" onclick="refresh()">Refresh Stock Data</button>
 
 <div align="center">
     <table id="datatable">
